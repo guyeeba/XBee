@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BinarySerialization;
 using XBee.Frames.AtCommands;
 
-#if NETCORE
+#if NETCORE || WINDOWS_UWP
 using Windows.Devices.SerialCommunication;
 #else
 using System.IO.Ports;
@@ -18,7 +18,7 @@ namespace XBee
     {
         private readonly FrameSerializer _frameSerializer = new FrameSerializer();
 
-#if NETCORE
+#if NETCORE || WINDOWS_UWP
         private readonly SerialDevice _serialPort;
 #else
         private readonly SerialPort _serialPort;
@@ -29,7 +29,7 @@ namespace XBee
         private readonly object _openCloseLock = new object();
         private readonly SemaphoreSlim _writeSemaphoreSlim = new SemaphoreSlim(1);
 
-#if NETCORE
+#if NETCORE || WINDOWS_UWP
         public SerialConnection(SerialDevice device)
         {
             _serialPort = device;
@@ -104,7 +104,7 @@ namespace XBee
 
             try
             {
-#if NETCORE
+#if NETCORE || WINDOWS_UWP
                 await _serialPort.OutputStream.WriteAsync(data.AsBuffer());
 #else
                 await _serialPort.BaseStream.WriteAsync(data, 0, data.Length, cancellationToken);
@@ -124,7 +124,7 @@ namespace XBee
         {
             lock (_openCloseLock)
             {
-#if !NETCORE
+#if !NETCORE && !WINDOWS_UWP
                 _serialPort.Open();
 #endif
                 _readCancellationTokenSource = new CancellationTokenSource();
@@ -136,7 +136,7 @@ namespace XBee
                     {
                         try
                         {
-#if NETCORE
+#if NETCORE || WINDOWS_UWP
                             Frame frame = _frameSerializer.Deserialize(_serialPort.InputStream.AsStreamForRead());
 #else
                             Frame frame = _frameSerializer.Deserialize(_serialPort.BaseStream);
@@ -175,7 +175,7 @@ namespace XBee
 
                 _readCancellationTokenSource.Cancel();
 
-#if !NETCORE
+#if !NETCORE && !WINDOWS_UWP
                 _serialPort.Close();
 #endif
 

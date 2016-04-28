@@ -314,6 +314,24 @@
     <Compile Include="..\XBee\Frames\AtCommands\WriteCommand.cs">
       <Link>Frames\AtCommands\WriteCommand.cs</Link>
     </Compile>
+    <Compile Include="..\XBee\Frames\ModemStatusData\EmberNetworkState.cs">
+      <Link>Frames\ModemStatusData\EmberNetworkState.cs</Link>
+    </Compile>
+    <Compile Include="..\XBee\Frames\ModemStatusData\EmberStatus.cs">
+      <Link>Frames\ModemStatusData\EmberStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\XBee\Frames\ModemStatusData\JoiningModemStatusData.cs">
+      <Link>Frames\ModemStatusData\JoiningModemStatusData.cs</Link>
+    </Compile>
+    <Compile Include="..\XBee\Frames\ModemStatusData\ModemStatusExtData.cs">
+      <Link>Frames\ModemStatusData\ModemStatusExtData.cs</Link>
+    </Compile>
+    <Compile Include="..\XBee\Frames\ModemStatusData\RejoinModemStatusData.cs">
+      <Link>Frames\ModemStatusData\RejoinModemStatusData.cs</Link>
+    </Compile>
+    <Compile Include="..\XBee\Frames\ModemStatusData\StackStatusModemStatusData.cs">
+      <Link>Frames\ModemStatusData\StackStatusModemStatusData.cs</Link>
+    </Compile>
     <Compile Include="..\XBee\Frames\DeliveryStatus.cs">
       <Link>Frames\DeliveryStatus.cs</Link>
     </Compile>
@@ -338,8 +356,14 @@
     <Compile Include="..\XBee\Frames\IRxIndicatorSampleFrame.cs">
       <Link>Frames\IRxIndicatorSampleFrame.cs</Link>
     </Compile>
+    <Compile Include="..\XBee\Frames\ModemStatusExtFrame.cs">
+      <Link>Frames\ModemStatusExtFrame.cs</Link>
+    </Compile>
     <Compile Include="..\XBee\Frames\ModemStatusFrame.cs">
       <Link>Frames\ModemStatusFrame.cs</Link>
+    </Compile>
+    <Compile Include="..\XBee\Frames\OneWireSensor.cs">
+      <Link>Frames\OneWireSensor.cs</Link>
     </Compile>
     <Compile Include="..\XBee\Frames\ReceivedSignalStrengthIndicator.cs">
       <Link>Frames\ReceivedSignalStrengthIndicator.cs</Link>
@@ -383,6 +407,9 @@
     <Compile Include="..\XBee\Frames\SampleChannels.cs">
       <Link>Frames\SampleChannels.cs</Link>
     </Compile>
+    <Compile Include="..\XBee\Frames\SensorReadIndicatorFrame.cs">
+      <Link>Frames\SensorReadIndicatorFrame.cs</Link>
+    </Compile>
     <Compile Include="..\XBee\Frames\TransmitOptions.cs">
       <Link>Frames\TransmitOptions.cs</Link>
     </Compile>
@@ -412,6 +439,9 @@
     </Compile>
     <Compile Include="..\XBee\ModemStatus.cs">
       <Link>ModemStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\XBee\ModemStatusExt.cs">
+      <Link>ModemStatusExt.cs</Link>
     </Compile>
     <Compile Include="..\XBee\NodeAddress.cs">
       <Link>NodeAddress.cs</Link>
@@ -443,6 +473,12 @@
     <Compile Include="..\XBee\SampleReceivedEventArgs.cs">
       <Link>SampleReceivedEventArgs.cs</Link>
     </Compile>
+    <Compile Include="..\XBee\SensorSample.cs">
+      <Link>SensorSample.cs</Link>
+    </Compile>
+    <Compile Include="..\XBee\SensorSampleReceivedEventArgs.cs">
+      <Link>SensorSampleReceivedEventArgs.cs</Link>
+    </Compile>
     <Compile Include="..\XBee\SerialConnection.cs">
       <Link>SerialConnection.cs</Link>
     </Compile>
@@ -451,6 +487,9 @@
     </Compile>
     <Compile Include="..\XBee\SignalStrength.cs">
       <Link>SignalStrength.cs</Link>
+    </Compile>
+    <Compile Include="..\XBee\Sourced.cs">
+      <Link>Sourced.cs</Link>
     </Compile>
     <Compile Include="..\XBee\SourcedData.cs">
       <Link>SourcedData.cs</Link>
@@ -463,6 +502,12 @@
     </Compile>
     <Compile Include="..\XBee\SourcedSampleReceivedEventArgs.cs">
       <Link>SourcedSampleReceivedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\XBee\SourcedSensorSample.cs">
+      <Link>SourcedSensorSample.cs</Link>
+    </Compile>
+    <Compile Include="..\XBee\SourcedSensorSampleReceivedEventArgs.cs">
+      <Link>SourcedSensorSampleReceivedEventArgs.cs</Link>
     </Compile>
     <Compile Include="..\XBee\StartDelimiter.cs">
       <Link>StartDelimiter.cs</Link>
@@ -486,9 +531,10 @@
     <EmbeddedResource Include="Properties\XBee.Universal.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="BinarySerializer.Universal">
-      <HintPath>..\..\BinarySerializer\BinarySerializer.Universal\bin\x86\Debug\BinarySerializer.Universal.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\BinarySerializer\BinarySerializer\BinarySerializer.csproj">
+      <Project>{dd5dac31-3ca0-4b79-8340-bdd68724a697}</Project>
+      <Name>BinarySerializer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
